@@ -1,0 +1,46 @@
+{
+  "name": "yuko",
+  "version": "0.1.0",
+  "description": "A Discord Library Written In JavaScript",
+  "main": "index.js",
+  "engines": {
+    "node": "14.16.0"
+  },
+  "scripts": {
+    "lint:js": "eslint -c .eslintrc.yml lib examples *.js",
+    "lint:js:fix": "eslint -c .eslintrc.yml lib examples *.js --fix && echo \"\u001b[1m\u001b[32mOK\u001b[39m\u001b[22m\" || echo \"\u001b[1m\u001b[31mNot OK\u001b[39m\u001b[22m\"",
+    "lint:ts": "eslint -c .eslintrc.ts.yml *.ts",
+    "lint:ts:fix": "eslint -c .eslintrc.ts.yml *.ts --fix && echo \"\u001b[1m\u001b[32mOK\u001b[39m\u001b[22m\" || echo \"\u001b[1m\u001b[31mNot OK\u001b[39m\u001b[22m\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NotMarx/yuko.git"
+  },
+  "keywords": [
+    "yuko",
+    "discord",
+    "discord-api",
+    "discord-library",
+    "javascript",
+    "js"
+  ],
+  "author": "reinhardt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NotMarx/yuko/issues"
+  },
+  "homepage": "https://github.com/NotMarx/yuko#readme",
+  "devDependencies": {
+    "@types/node": "^16.4.13",
+    "@types/ws": "^7.4.7",
+    "@typescript-eslint/eslint-plugin": "^4.29.1",
+    "@typescript-eslint/parser": "^4.29.1",
+    "eslint": "^7.32.0",
+    "eslint-plugin-sort-class-members": "^1.11.0",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.1",
+    "ws": "^7.4.4"
+  }
+}
