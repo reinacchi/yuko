@@ -91,7 +91,7 @@ export class Client extends EventEmitter {
     user: ClientUser;
     connect(): Promise<void>;
     createMessage(channelID: string, content: MessageOptions): Promise<Message>;
-    editMessage(channelID: string, messageID: string, content: MessageOptions): Promise<void>;
+    editMessage(channelID: string, messageID: string, content: MessageOptions): Promise<Message>;
     on<K extends keyof ClientEvents>(event: K, listener: (...args: ClientEvents[K]) => void): this;
     on<S extends string | symbol>(
         event: Exclude<S, keyof ClientEvents>,
@@ -133,7 +133,7 @@ export class Message extends Base {
     pinned: boolean;
     tts: boolean;
     type: number;
-    edit(content: MessageOptions): Promise<void>;
+    edit(content: MessageOptions): Promise<Message>;
 }
 
 export class User extends Base {
