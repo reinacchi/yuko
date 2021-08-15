@@ -7,13 +7,14 @@ declare module "yuko";
 
 type ContentType = string | "application/json"
 type HTTPMethod = "DELETE" | "GET" | "PATCH" | "POST" | "PUT";
-
+type IntentOptions = "guilds" | "guildMembers" | "guildBans" | "guildEmojis" | "guildIntegrations" | "guildWebhooks" | "guildInvites" | "guildVoiceStates" | "guildPresences" | "guildMessages" | "guildMessageReactions" | "guildMessageTyping" | "directMessages" | "directMessageReactions" | "directMessageTyping";
 interface ClientEvents {
     ready: [];
+    messageCreate: [message: Message];
 }
 
 interface ClientOptions {
-    allowedMentions;
+    intents: IntentOptions[];
     shard?: boolean;
     shardCount?: number | "auto";
 }
@@ -52,6 +53,21 @@ interface EmbedOptions {
     url?: string;
 }
 
+interface MessageOptions {
+    content?: string;
+    embeds?: EmbedOptions[];
+    flags?: number;
+    messageReference?: MessageReferenceOptions;
+    tts?: boolean;
+}
+
+interface MessageReferenceOptions {
+    channelID?: string;
+    failIfNotExists?: boolean;
+    guildID?: string;
+    messageID: string;
+}
+
 class Base {
     constructor(id: string);
 
@@ -73,7 +89,9 @@ export class Client extends EventEmitter {
     shards: any[];
     token: string;
     user: ClientUser;
-    connect(): Promise<void>
+    connect(): Promise<void>;
+    createMessage(channelID: string, content: MessageOptions): Promise<Message>;
+    editMessage(channelID: string, messageID: string, content: MessageOptions): Promise<void>;
     on<K extends keyof ClientEvents>(event: K, listener: (...args: ClientEvents[K]) => void): this;
     on<S extends string | symbol>(
         event: Exclude<S, keyof ClientEvents>,
@@ -102,6 +120,18 @@ export class ClientUser extends User {
     mfaEnabled: boolean;
     verified: boolean;
     private loadData(data: object): Promise<void>;
+}
+
+export class Message extends Base {
+    constructor(client: Client, data: object);
+
+    author: User;
+    content: string;
+    embeds: object[];
+    id: string;
+    pinned: boolean;
+    type: number;
+    edit(content: MessageOptions): Promise<void>;
 }
 
 export class User extends Base {
