@@ -126,10 +126,12 @@ export class Message extends Base {
     constructor(client: Client, data: object);
 
     author: User;
+    channelID: string;
     content: string;
     embeds: object[];
     id: string;
     pinned: boolean;
+    tts: boolean;
     type: number;
     edit(content: MessageOptions): Promise<void>;
 }
