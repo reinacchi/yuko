@@ -14,16 +14,22 @@ npm i --save yuko
 
 # Examples
 
-This library currently doesn't support most Gateway event for now and there's nothing else you can do other than this example below.
-
 - More examples can be found [Here](https://github.com/NotMarx/yuko/tree/master/examples).
 
 ```js
 const Yuko = require("yuko");
-const client = new Yuko.Client("Bot TOKEN"});
+const client = new Yuko.Client("Bot TOKEN", { intents: ["guilds", "guildMessages"]});
 
 client.on("ready", () => {
     console.log(`${client.user.tag} is Ready!`);
+});
+
+client.on("messageCreate", (message) => {
+    if (message.author.bot) return;
+
+    if (message.content === "!ping") {
+        client.createMessage("The Channel ID", { content: "Pong!"});
+    }
 });
 
 client.connect();
