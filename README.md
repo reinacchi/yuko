@@ -2,8 +2,6 @@
 
 A Discord Library Written In JavaScript.
 
-- **Note:** This library is W.I.P and can be use for testing purpose only.
-
 # Installing
 
 You'll need NodeJS 14+ installed.
