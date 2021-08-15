@@ -123,5 +123,12 @@ export class User extends Base {
 export class RESTManager {
     constructor(client: Client);
 
-    request(route: object, payload?: unknown, contentType: ContentType): Promise<unknown>;
+    request(route: Route, payload?: unknown, contentType: ContentType): Promise<unknown>;
+    route(method: HTTPMethod, route: string);
+}
+
+class Route {
+    constructor(method: HTTPMethod, route: string);
+
+    url: string;
 }
