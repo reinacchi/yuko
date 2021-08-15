@@ -4,7 +4,7 @@
   "description": "A Discord Library Written In JavaScript",
   "main": "index.js",
   "engines": {
-    "node": "14.16.0"
+    "node": "14.0.0"
   },
   "scripts": {
     "lint:js": "eslint -c .eslintrc.yml lib examples *.js",

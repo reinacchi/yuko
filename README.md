@@ -9,7 +9,7 @@ A Discord Library Written In JavaScript.
 You'll need NodeJS 14+ installed.
 
 ```
-npm i --save yuko
+npm install --save yuko
 ```
 
 # Examples
