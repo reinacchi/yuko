@@ -1,5 +1,7 @@
 # Yuko
 
+![YukoVersion](https://img.shields.io/npm/v/yuko?color=42B893&label=NPM&logo=Yuko&style=flat-square)
+
 A Discord Library Written In JavaScript.
 
 # Installing
@@ -16,7 +18,7 @@ npm install --save yuko
 
 ```js
 const Yuko = require("yuko");
-const client = new Yuko.Client("Bot TOKEN", { intents: ["guilds", "guildMessages"]});
+const client = new Yuko.Client("TOKEN", { intents: ["guilds", "guildMessages"] });
 
 client.on("ready", () => {
     console.log(`${client.user.tag} is Ready!`);
@@ -26,7 +28,7 @@ client.on("messageCreate", (message) => {
     if (message.author.bot) return;
 
     if (message.content === "!ping") {
-        client.createMessage("The Channel ID", { content: "Pong!"});
+        client.createMessage(message.channelID, { content: "Pong!"});
     }
 });
 
@@ -36,7 +38,7 @@ client.connect();
 # Resources Links
 
 - **Yuko's Official Docs** is currently **W.I.P**.
-- **[Yuko's GitHub Repository](https://github.com/NotMarx/yuko)** is where the main development of the library.
+- **[Yuko's GitHub Repository](https://github.com/NotMarx/yuko)** is where the main development of the library happens.
 - **[Yuko's Support Server](https://discord.gg/5wP5cCqSHD)** is where you can ask help within the library or contact me.
 
 # License
