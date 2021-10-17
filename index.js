@@ -2,7 +2,7 @@
 
 module.exports = {
     Channel: require("./lib/structures/Channel"),
-    Client: require("./lib/client/Client"),
+    Client: require("./lib/Client"),
     ClientUser: require("./lib/structures/ClientUser"),
     Collection: require("./lib/utils/Collection"),
     DMChannel: require("./lib/structures/DMChannel"),
@@ -10,10 +10,11 @@ module.exports = {
     GuildChannel: require("./lib/structures/GuildChannel"),
     Member: require("./lib/structures/Member"),
     Message: require("./lib/structures/Message"),
-    RESTManager: require("./lib/rest/RESTManager"),
+    RESTManager: require("./lib/managers/RESTManager"),
+    Role: require("./lib/structures/Role"),
+    Shard: require("./lib/core/Shard"),
     TextChannel: require("./lib/structures/TextChannel"),
     User: require("./lib/structures/User"),
-    Websocket: require("./lib/utils/Websocket"),
 
     VERSION: require("./package.json").version
 };
