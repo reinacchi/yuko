@@ -30,7 +30,7 @@ interface AllowedMentions {
 interface Button {
     custom_id: string;
     disabled?: boolean;
-    emoji?: object;
+    emoji?: EmojiOptions;
     label?: string;
     style: 1 | 2 | 3 | 4 | 5;
     type: 2;
@@ -38,17 +38,19 @@ interface Button {
 }
 
 interface ClientEvents {
-    ready: [];
+    error: [error: string, shardID: number];
     guildAvailable: [guild: Guild];
     guildCreate: [guild: Guild];
     messageCreate: [message: Message];
+    rawWebsocket: [packet: RawPacket];
+    ready: [];
     shardPreReady: [shardID: number];
 }
 
 interface ClientOptions {
     allowedMentions?: AllowedMentions;
     intents: IntentOptions[];
-    shard?: boolean;
+    messageCacheLimit?: number;
     shardCount?: number | "auto";
 }
 
@@ -84,6 +86,12 @@ interface EmbedOptions {
     timestamps?: string | Date;
     title?: string;
     url?: string;
+}
+
+interface EmojiOptions {
+    animated?: boolean;
+    name: string;
+    id?: string;
 }
 
 interface GameActivity {
@@ -136,7 +144,7 @@ interface SelectMenu {
 interface SelectMenuOptions {
     default?: boolean;
     description?: string;
-    emoji?: object;
+    emoji?: EmojiOptions;
     label: string;
     value: string;
 }
@@ -165,23 +173,22 @@ export class Client extends EventEmitter {
     channels: Collection<Channel>;
     connected: boolean;
     guilds: Collection<Guild>;
-    isSharded: boolean;
     messages: Collection<Message>;
     options: ClientOptions;
     rest: RESTManager;
-    shards: Collection<Websocket>;
+    shards: Collection<Shard>;
     startupTimestamp: number;
     token: string;
     uptime: number;
     user: ClientUser;
     users: Collection<User>
-    ws: Websocket;
+    ws: Shard;
     connect(): Promise<void>;
     createDM(userID: string): Promise<DMChannel>;
     createMessage(channelID: string, content: MessageOptions): Promise<Message>;
-    deleteMessage(channelID: string, messageID: string, reason?: string): Promise<void>;
+    deleteMessage(channelID: string, messageID: string): Promise<void>;
     editMessage(channelID: string, messageID: string, content: MessageOptions): Promise<Message>;
-    
+    getMessages(channelID: string): Promise<Message[]>;
     on<K extends keyof ClientEvents>(event: K, listener: (...args: ClientEvents[K]) => void): this;
     on<S extends string | symbol>(
         event: Exclude<S, keyof ClientEvents>,
@@ -212,35 +219,46 @@ export class ClientUser extends User {
     editStatus(status: Status, activity?: GameActivity): void;
 }
 
-export class Collection<T> extends Map<string | number, T> {
-    constructor(...args: T[]);
-
-    add(...objects: T[]): T;
-    filter(predicate: (i: T) => boolean): T | Array<Base>;
-    find(predicate: (i: T) => boolean): T | Base;
-    map<R>(predicate: (i: T) => R): R[];
-
-}
+export class Collection<T extends { id: string | number }> extends Map<string | number, T> {
+    base: new (...args: any[]) => T;
+    limit?: number;
+    constructor(base: new (...args: any[]) => T, limit?: number);
+    add(obj: T, extra?: unknown, replace?: boolean): T;
+    every(func: (i: T) => boolean): boolean;
+    filter(func: (i: T) => boolean): T[];
+    find(func: (i: T) => boolean): T | undefined;
+    map<R>(func: (i: T) => R): R[];
+    random(): T | undefined;
+    reduce<U>(func: (accumulator: U, val: T) => U, initialValue?: U): U;
+    remove(obj: T | Uncached): T | null;
+    some(func: (i: T) => boolean): boolean;
+    update(obj: T, extra?: unknown, replace?: boolean): T;
+  }
 
 export class DMChannel extends Channel {
     constructor(client: Client, data: object);
 
     lastMessageID: string;
     createMessage(content: MessageOptions): Promise<Message>;
+    deleteMessage(messageID: string): Promise<void>;
+    editMessage(channelID: string, content: MessageOptions): Promise<Message>;
 }
 
 export class Guild extends Base {
     constructor(client: Client, data: object);
 
+    bannerURL?: string;
     channels: Collection<Channel>;
     client: Client;
-    icon: string;
+    icon?: string;
+    iconURL?: string;
     memberCount: number;
     members: Collection<Member>;
     name: string;
     nsfwLevel: number;
     id: string;
     region: string;
+    roles: Collection<Role>;
 }
 
 export class GuildChannel extends Channel {
@@ -261,6 +279,7 @@ export class Member extends User {
     joinedAt: number;
     muted: boolean;
     nick: string;
+    roles: string[];
     user: User;
     toUser(): User;
 }
@@ -271,6 +290,7 @@ export class Message extends Base {
     author: User;
     channelID: string;
     channel: TextChannel;
+    client: Client;
     content: string;
     embeds: EmbedOptions[];
     guild: Guild;
@@ -282,18 +302,6 @@ export class Message extends Base {
     type: number;
     delete(): Promise<void>;
     edit(content: MessageOptions): Promise<Message>;
-}
-
-export class User extends Base {
-    constructor(client: Client, data: object);
-
-    bot: boolean;
-    client: Client;
-    discriminator: string;
-    id: string;
-    system: boolean;
-    tag: string;
-    username: string;
 }
 
 export class RESTManager {
@@ -313,10 +321,44 @@ export class RESTManager {
     route(method: HTTPMethod, route: string);
 }
 
+export class Role extends Base {
+    constructor(client: Client, guild: Guild, data: object);
+
+    client: Client;
+    color: string;
+    guild: Guild;
+    hoist: boolean;
+    id: string;
+    managed: boolean;
+    mentionable: boolean;
+    name: string;
+    position: number;
+}
+
 export class Route {
     constructor(method: HTTPMethod, route: string);
 
     url: string;
+}
+
+export class Shard {
+    constructor(client: Client, shardID?: number);
+
+    client: Client;
+    connected: boolean;
+    id: number;
+    lastPing: number;
+    latencies: number[];
+    latency: number;
+    sequence: object;
+    sessionID: string;
+    socketURL: string;
+    heartbeat(): Promise<void>;
+    processWebsocketData(rawData: RawPacket): Promise<void>;
+    send(...args: object[]): Promise<void>;
+    setupWebsocket(): Promise<void>;
+    start(): Promise<void>;
+
 }
 
 export class TextChannel extends GuildChannel {
@@ -327,26 +369,21 @@ export class TextChannel extends GuildChannel {
     nsfw: boolean;
     topic: string;
     createMessage(content: MessageOptions): Promise<Message>;
+    deleteMessage(messageID: string): Promise<void>;
+    editMessage(channelID: string, content: MessageOptions): Promise<Message>;
 }
 
-export class Websocket {
-    constructor(client: Client, shardID: number);
+export class User extends Base {
+    constructor(client: Client, data: object);
 
+    bot: boolean;
     client: Client;
-    id: number;
-    lastPing: number;
-    latencies: number[];
-    latency: number;
-    sequence: object;
-    sessionID: number;
-    shardID: number;
-    socketURL: string;
-    doHeartBeat(): Promise<void>;
-    processWebsocketData(rawData: RawPacket): Promise<void>;
-    send(...args: object[]): Promise<void>;
-    setupWebsocket(): Promise<void>;
-    start(): Promise<void>;
-
+    discriminator: string;
+    id: string;
+    publicFlags: number;
+    system: boolean;
+    username: string;
+    createDM(): Promise<DMChannel>;
 }
 
 export const VERSION: string;

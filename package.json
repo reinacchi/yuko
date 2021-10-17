@@ -1,10 +1,10 @@
 {
   "name": "yuko",
-  "version": "0.1.1",
+  "version": "0.1.2-dev",
   "description": "A Discord Library Written In JavaScript",
   "main": "index.js",
   "engines": {
-    "node": "14.0.0"
+    "node": ">=14.0.0"
   },
   "scripts": {
     "lint:js": "eslint -c .eslintrc.yml lib examples *.js",
