@@ -242,6 +242,7 @@ export class DMChannel extends Channel {
     createMessage(content: MessageOptions): Promise<Message>;
     deleteMessage(messageID: string): Promise<void>;
     editMessage(channelID: string, content: MessageOptions): Promise<Message>;
+    getMessages(): Promise<Message[]>;
 }
 
 export class Guild extends Base {
@@ -371,6 +372,7 @@ export class TextChannel extends GuildChannel {
     createMessage(content: MessageOptions): Promise<Message>;
     deleteMessage(messageID: string): Promise<void>;
     editMessage(channelID: string, content: MessageOptions): Promise<Message>;
+    getMessages(): Promise<Message[]>;
 }
 
 export class User extends Base {
