@@ -288,17 +288,22 @@ export class Member extends User {
 export class Message extends Base {
     constructor(client: Client, data: object);
 
+    attachments: object[];
     author: User;
     channelID: string;
     channel: TextChannel;
     client: Client;
+    components: ActionRow[];
     content: string;
+    editedTimestamp: number;
     embeds: EmbedOptions[];
     guild: Guild;
     guildID: string;
     id: string;
     member: Member;
+    messageReference: MessageReferenceOptions;
     pinned: boolean;
+    timestamp: number;
     tts: boolean;
     type: number;
     delete(): Promise<void>;
