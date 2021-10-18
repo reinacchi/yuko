@@ -38,7 +38,7 @@ interface Button {
 }
 
 interface ClientEvents {
-    error: [error: string, shardID: number];
+    error: [error: string, shardID?: number];
     guildAvailable: [guild: Guild];
     guildCreate: [guild: Guild];
     messageCreate: [message: Message];
