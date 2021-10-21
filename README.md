@@ -20,7 +20,7 @@ npm install --save yuko
 const Yuko = require("yuko");
 const client = new Yuko.Client("TOKEN", { intents: ["guilds", "guildMessages"] });
 
-client.on("ready", () => {
+client.on("gatewayReady", () => {
     console.log(`${client.user.username} is Ready!`);
 });
 
