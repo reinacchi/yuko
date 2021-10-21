@@ -322,7 +322,6 @@ export class RESTManager {
     requesters: Map<string, Route>;
     running: boolean;
     retries: Map<string, Route>;
-    token: string;
     userAgent: string;
     request(method: HTTPMethod, endpoint: string, payload?: unknown, contentType?: ContentType): Promise<any>;
     route(method: HTTPMethod, route: string);
