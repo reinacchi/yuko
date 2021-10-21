@@ -230,7 +230,7 @@ export class Collection<T extends { id: string | number }> extends Map<string | 
     map<R>(func: (i: T) => R): R[];
     random(): T | undefined;
     reduce<U>(func: (accumulator: U, val: T) => U, initialValue?: U): U;
-    remove(obj: T | Uncached): T | null;
+    remove(obj: T): T | null;
     some(func: (i: T) => boolean): boolean;
     update(obj: T, extra?: unknown, replace?: boolean): T;
   }
@@ -318,12 +318,12 @@ export class RESTManager {
     locallyLimited: boolean;
     ratelimited: boolean;
     ratelimit: Ratelimit;
-    requesters: Map;
+    requesters: Map<string, Route>;
     running: boolean;
-    retries: Map;
+    retries: Map<string, Route>;
     token: string;
     userAgent: string;
-    request(route: Route, payload?: unknown, contentType?: ContentType): Promise<unknown>;
+    request(method: HTTPMethod, endpoint: string, payload?: unknown, contentType?: ContentType): Promise<unknown>;
     route(method: HTTPMethod, route: string);
 }
 
