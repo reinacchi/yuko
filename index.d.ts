@@ -151,7 +151,7 @@ interface SelectMenuOptions {
 }
 
 export class Base {
-    constructor(id: string);
+    constructor(id?: string);
 
     createdAt: number;
     id: string;
@@ -362,7 +362,7 @@ export class Shard {
     socketURL: string;
     heartbeat(): Promise<void>;
     processWebsocketData(rawData: RawPacket): Promise<void>;
-    send(...args: object[]): Promise<void>;
+    send(...args: object[]): Promise<any>;
     setupWebsocket(): Promise<void>;
     start(): Promise<void>;
 
