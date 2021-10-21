@@ -185,9 +185,9 @@ export class Client extends EventEmitter {
     ws: Shard;
     connect(): Promise<void>;
     createDM(userID: string): Promise<DMChannel>;
-    createMessage(channelID: string, content: MessageOptions): Promise<Message>;
+    createMessage(channelID: string, options: MessageOptions): Promise<Message>;
     deleteMessage(channelID: string, messageID: string): Promise<void>;
-    editMessage(channelID: string, messageID: string, content: MessageOptions): Promise<Message>;
+    editMessage(channelID: string, messageID: string, options: MessageOptions): Promise<Message>;
     getMessages(channelID: string): Promise<Message[]>;
     on<K extends keyof ClientEvents>(event: K, listener: (...args: ClientEvents[K]) => void): this;
     on<S extends string | symbol>(
@@ -239,9 +239,9 @@ export class DMChannel extends Channel {
     constructor(client: Client, data: object);
 
     lastMessageID: string;
-    createMessage(content: MessageOptions): Promise<Message>;
+    createMessage(options: MessageOptions): Promise<Message>;
     deleteMessage(messageID: string): Promise<void>;
-    editMessage(channelID: string, content: MessageOptions): Promise<Message>;
+    editMessage(channelID: string, options: MessageOptions): Promise<Message>;
     getMessages(): Promise<Message[]>;
 }
 
@@ -307,7 +307,7 @@ export class Message extends Base {
     tts: boolean;
     type: number;
     delete(): Promise<void>;
-    edit(content: MessageOptions): Promise<Message>;
+    edit(options: MessageOptions): Promise<Message>;
 }
 
 export class RESTManager {
@@ -374,9 +374,9 @@ export class TextChannel extends GuildChannel {
     name: string;
     nsfw: boolean;
     topic: string;
-    createMessage(content: MessageOptions): Promise<Message>;
+    createMessage(options: MessageOptions): Promise<Message>;
     deleteMessage(messageID: string): Promise<void>;
-    editMessage(channelID: string, content: MessageOptions): Promise<Message>;
+    editMessage(channelID: string, options: MessageOptions): Promise<Message>;
     getMessages(): Promise<Message[]>;
 }
 
