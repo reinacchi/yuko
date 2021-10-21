@@ -2,9 +2,9 @@
 
 [![YukoVersion](https://img.shields.io/npm/v/yuko?color=42B893&label=NPM&logo=Yuko&style=flat-square)](https://npmjs.com/package/yuko)
 
-A Discord Library Written In JavaScript.
+**Yuko** is a Discord library written in JavaScript. Both Discord's REST and Gateway are provided through this single library.
 
-# Installing
+# Installation
 
 You'll need NodeJS 14+ installed.
 
