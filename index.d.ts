@@ -39,11 +39,11 @@ interface Button {
 
 interface ClientEvents {
     error: [error: string, shardID?: number];
+    gatewayReady: [];
     guildAvailable: [guild: Guild];
     guildCreate: [guild: Guild];
     messageCreate: [message: Message];
     rawWebsocket: [packet: RawPacket];
-    ready: [];
     shardPreReady: [shardID: number];
 }
 
