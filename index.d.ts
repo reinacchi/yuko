@@ -12,8 +12,8 @@ type AnyGuildChannel = TextChannel | GuildChannel;
 type ChannelTypes = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 10 | 11 | 12 | 13;
 type ContentType = string | "application/json"
 type HTTPMethod = "DELETE" | "GET" | "PATCH" | "POST" | "PUT";
-type IntentOptions = "guilds" | "guildMembers" | "guildBans" | "guildEmojis" | "guildIntegrations" | "guildWebhooks" | "guildInvites" | "guildVoiceStates" | "guildPresences" | "guildMessages" | "guildMessageReactions" | "guildMessageTyping" | "directMessages" | "directMessageReactions" | "directMessageTyping";
-type Status = "online" | "idle" | "dnd" | "invisible";
+type GatewayIntentOptions = "guilds" | "guildMembers" | "guildBans" | "guildEmojis" | "guildIntegrations" | "guildWebhooks" | "guildInvites" | "guildVoiceStates" | "guildPresences" | "guildMessages" | "guildMessageReactions" | "guildMessageTyping" | "directMessages" | "directMessageReactions" | "directMessageTyping";
+type PresenceStatus = "online" | "idle" | "dnd" | "invisible";
 
 interface ActionRow {
     components: ActionRowComponents[];
@@ -95,7 +95,7 @@ interface EmojiOptions {
     id?: string;
 }
 
-interface GameActivity {
+interface PresenceActivityOptions {
     name?: string;
     type?: ActivityType;
     url?: string;
@@ -173,6 +173,7 @@ export class Client extends EventEmitter {
 
     channels: Collection<Channel>;
     connected: boolean;
+    gateway: Shard;
     guilds: Collection<Guild>;
     messages: Collection<Message>;
     options: ClientOptions;
@@ -183,7 +184,6 @@ export class Client extends EventEmitter {
     uptime: number;
     user: ClientUser;
     users: Collection<User>
-    ws: Shard;
     connect(): Promise<void>;
     createDM(userID: string): Promise<DMChannel>;
     createMessage(channelID: string, options: MessageOptions): Promise<Message>;
@@ -217,7 +217,7 @@ export class ClientUser extends User {
     locale: string;
     mfaEnabled: boolean;
     verified: boolean;
-    editStatus(status: Status, activity?: GameActivity): void;
+    editStatus(status: PresenceStatus, activity?: PresenceActivityOptions): void;
 }
 
 export class Collection<T extends { id: string | number }> extends Map<string | number, T> {
