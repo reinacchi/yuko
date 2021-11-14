@@ -11,7 +11,7 @@ Thank you for considering to contribute to Yuko! We expect all PRs to matched wi
 
 ## Submit an Issue
 
-We love issues, bugs, or new feature suggestions from people however, to keep a stable tracking of current existing issues, we want **no** issues submitted are a duplicate of its origin. This would be hard for us to track them at some point. Please keep in mind that we aim on issues with bugs related for bugfixes mainly so if your issues aren't relevant to bug issues, please don't disheartened if your issue isn't considered by us! We want to keep everything stable before adding new features to keep the quality of the library. 
+We love issues, bugs, or new feature suggestions from people however, to keep a stable tracking of current existing issues, we want **no** issues submitted as a duplicate of its origin. This would be hard for us to track them at some point. Please keep in mind that we aim on issues with bugs related for bugfixes mainly so if your issues aren't relevant to bug issues, please don't disheartened if your issue isn't considered by us! We want to keep everything stable before adding new features to keep the quality of the library. 
 
 Before submitting an issue:
 
