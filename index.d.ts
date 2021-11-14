@@ -12,8 +12,15 @@ type AnyGuildChannel = TextChannel | GuildChannel;
 type ChannelTypes = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 10 | 11 | 12 | 13;
 type ContentType = string | "application/json"
 type HTTPMethod = "DELETE" | "GET" | "PATCH" | "POST" | "PUT";
-type GatewayIntentOptions = "guilds" | "guildMembers" | "guildBans" | "guildEmojis" | "guildIntegrations" | "guildWebhooks" | "guildInvites" | "guildVoiceStates" | "guildPresences" | "guildMessages" | "guildMessageReactions" | "guildMessageTyping" | "directMessages" | "directMessageReactions" | "directMessageTyping";
-type PresenceStatus = "online" | "idle" | "dnd" | "invisible";
+type GatewayIntentOptions = "Guilds" | "GuildMembers" | "GuildBans" | "GuildEmojis" | "GuildIntegrations" | "GuildWebhooks" | "GuildInvites" | "GuildVoiceStates" | "GuildPresences" | "GuildMessages" | "GuildMessageReactions" | "GuildMessageTyping" | "DirectMessages" | "DirectMessageReactions" | "DirectMessageTyping";
+type PresenceStatusOptions = "online" | "dnd" | "idle" | "invisible";
+
+export enum PresenceStatus {
+    ONLINE = "online",
+    DND = "dnd",
+    IDLE = "idle",
+    INVISIBLE = "invisible"
+}
 
 interface ActionRow {
     components: ActionRowComponents[];
@@ -50,7 +57,7 @@ interface ClientEvents {
 
 interface ClientOptions {
     allowedMentions?: AllowedMentions;
-    intents: IntentOptions[];
+    intents: GatewayIntentOptions[];
     messageCacheLimit?: number;
     shardCount?: number | "auto";
 }
@@ -217,7 +224,7 @@ export class ClientUser extends User {
     locale: string;
     mfaEnabled: boolean;
     verified: boolean;
-    editStatus(status: PresenceStatus, activity?: PresenceActivityOptions): void;
+    editStatus(status: PresenceStatus | PresenceStatusOptions, activity?: PresenceActivityOptions): void;
 }
 
 export class Collection<T extends { id: string | number }> extends Map<string | number, T> {
