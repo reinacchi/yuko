@@ -1,5 +1,5 @@
 const Yuko = require("yuko");
-const client = new Yuko.Client("TOKEN", { intents: ["guilds", "guildMessages"] });
+const client = new Yuko.Client("TOKEN", { intents: ["Guilds", "GuildMessages"] });
 
 client.on("ready", () => {
     console.log(`${client.user.username} is Ready!`);
