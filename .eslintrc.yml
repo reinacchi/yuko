@@ -62,6 +62,9 @@ rules:
   semi:
     - 2
     - always
+  space-before-function-paren:
+    - 2
+    - never
   sort-class-members/sort-class-members:
     - 2
     - order:
