@@ -6,7 +6,9 @@ client.on("ready", () => {
 });
 
 client.on("messageCreate", (message) => {
-    if (message.author.bot) return;
+    if (message.author.bot) {
+        return;
+    }
 
     if (message.content === "!ping") {
         client.createMessage(message.channelID, { content: "Pong!" });
