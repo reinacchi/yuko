@@ -13,14 +13,7 @@ type ChannelTypes = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 10 | 11 | 12 | 13;
 type ContentType = string | "application/json"
 type HTTPMethod = "DELETE" | "GET" | "PATCH" | "POST" | "PUT";
 type GatewayIntentOptions = "Guilds" | "GuildMembers" | "GuildBans" | "GuildEmojis" | "GuildIntegrations" | "GuildWebhooks" | "GuildInvites" | "GuildVoiceStates" | "GuildPresences" | "GuildMessages" | "GuildMessageReactions" | "GuildMessageTyping" | "DirectMessages" | "DirectMessageReactions" | "DirectMessageTyping";
-type PresenceStatusOptions = "online" | "dnd" | "idle" | "invisible";
-
-export enum PresenceStatus {
-    ONLINE = "online",
-    DND = "dnd",
-    IDLE = "idle",
-    INVISIBLE = "invisible"
-}
+type PresenceStatusOptions = "online" | "dnd" | "idle" | "offline" | "invisible";
 
 interface ActionRow {
     components: ActionRowComponents[];
