@@ -9,7 +9,7 @@ client.on("messageCreate", (message) => {
     if (message.author.bot) return;
 
     if (message.content === "!ping") {
-        client.createMessage(message.channelID, { content: "Pong!"});
+        client.createMessage(message.channelID, { content: "Pong!" });
     } else if (message.content === "!embed") {
         client.createMessage(message.channelID, {
             embeds: [
