@@ -5,6 +5,7 @@ module.exports = {
     Client: require("./lib/Client"),
     ClientUser: require("./lib/structures/ClientUser"),
     Collection: require("./lib/utils/Collection"),
+    Constants: require("./lib/Constants"),
     DMChannel: require("./lib/structures/DMChannel"),
     Guild: require("./lib/structures/Guild"),
     GuildChannel: require("./lib/structures/GuildChannel"),
