@@ -302,6 +302,7 @@ export class Client extends EventEmitter {
     uptime: number;
     user: ClientUser;
     users: Collection<User>
+    bulkDeleteMessages(channelID: string, messageIDs: string[]): Promise<void>;
     connect(): Promise<void>;
     createDM(userID: string): Promise<DMChannel>;
     createMessage(channelID: string, options: MessageOptions): Promise<Message>;
