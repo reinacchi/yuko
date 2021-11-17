@@ -55,6 +55,124 @@ interface ClientOptions {
     shardCount?: number | "auto";
 }
 
+interface Constants {
+    ChannelTypes: {
+        GUILD_TEXT: 0;
+        DM: 1;
+        GUILD_VOICE: 2;
+        GROUP_DM: 3;
+        GUILD_CATEGORY: 4;
+        GUILD_NEWS: 5;
+        GUILD_STORE: 6;
+        GUILD_NEWS_THREAD: 10;
+        GUILD_THREAD: 11;
+        GUILD_PRIVATE_THREAD: 12;
+        GUILD_STAGE_VOICE: 13;
+    };
+    GatewayIntents: {
+        Guilds: 1;
+        GuildMembers: 2;
+        GuildBans: 4;
+        GuildEmojis: 8;
+        GuildIntegrations: 16;
+        GuildWebhooks: 32;
+        GuildInvites: 64;
+        GuildVoiceStates: 128;
+        GuildPresences: 256;
+        GuildMessages: 512;
+        GuildMessageReactions: 1024;
+        GuildMessageTyping: 2048;
+        DirectMessages: 4096;
+        DirectMessageReaction: 8192;
+        DirectMessageTyping: 16384;
+        AllPrivileged: 258;
+        AllNonPrivileged: 32509;
+        AllGuild: 4095;
+        AllDM: 28672;
+        All: 32767;
+    };
+    GatewayOPCodes: {
+        EVENT: 0;
+        HEARTBEAT: 1;
+        IDENTIFY: 2;
+        PRESENCE_UPDATE: 3;
+        VOICE_STATE_UPDATE: 4;
+        VOICE_SERVER_PING: 5;
+        RESUME: 6;
+        RECONNECT: 7;
+        GET_GUILD_MEMBERS: 8;
+        INVALID_SESSION: 9;
+        HELLO: 10;
+        HEARTBEAT_ACK: 11;
+        SYNC_GUILD: 12;
+        SYNC_CALL: 13;
+    };
+    ImageFormatTypes: [
+        "jpg",
+        "jpeg",
+        "png",
+        "webp",
+        "gif"
+    ],
+    ImageSizes: {
+        MAXIMUM: 4096;
+        MINIMUM: 16;
+    };
+    MessageActivityFlags: {
+        INSTANCE: 1;
+        JOIN: 2;
+        SPECTATE: 4;
+        JOIN_REQUEST: 8;
+        SYNC: 16;
+        PLAY: 32;
+        PARTY_PRIVACY_FRIENDS: 64;
+        PARTY_PRIVACY_VOICE_CHANNEL: 128;
+        EMBEDDED: 256;
+    };
+    MessageActivityTypes: {
+        JOIN: 1;
+        SPECTATE: 2;
+        LISTEN: 3;
+        JOIN_REQUEST: 5;
+    };
+    MessageFlags: {
+        CROSSPOSTED: 1;
+        IS_CROSSPOST: 2;
+        SUPPRESS_EMBEDS: 4;
+        SOURCE_MESSAGE_DELETED: 8;
+        URGENT: 16;
+        HAS_THREAD: 32;
+        EPHEMERAL: 64;
+        LOADING: 128;
+    };
+    MessageTypes: {
+        DEFAULT: 0;
+        RECIPIENT_ADD: 1;
+        RECIPIENT_REMOVE: 2;
+        CALL: 3;
+        CHANNEL_NAME_CHANGE: 4;
+        CHANNEL_ICON_CHANGE: 5;
+        CHANNEL_PINNED_MESSAGE: 6;
+        GUILD_MEMBER_JOIN: 7;
+        USER_PREMIUM_GUILD_SUBSCRIPTION: 8;
+        USER_PREMIUM_GUILD_SUBSCRIPTION_TIER_1: 9;
+        USER_PREMIUM_GUILD_SUBSCRIPTION_TIER_2: 10;
+        USER_PREMIUM_GUILD_SUBSCRIPTION_TIER_3: 11;
+        CHANNEL_FOLLOW_ADD: 12;
+
+        GUILD_DISCOVERY_DISQUALIFIED: 14;
+        GUILD_DISCOVERY_REQUALIFIED: 15;
+        GUILD_DISCOVERY_GRACE_PERIOD_INITIAL_WARNING: 16;
+        GUILD_DISCOVERY_GRACE_PERIOD_FINAL_WARNING: 17;
+        THREAD_CREATED: 18;
+        REPLY: 19;
+        CHAT_INPUT_COMMAND: 20;
+        THREAD_STARTER_MESSAGE: 21;
+        GUILD_INVITE_REMINDER: 22;
+        CONTEXT_MENU_COMMAND: 23;
+    };
+}
+
 interface EmbedAuthorOptions {
     icon_url?: string;
     name: string;
@@ -234,7 +352,7 @@ export class Collection<T extends { id: string | number }> extends Map<string | 
     remove(obj: T): T | null;
     some(func: (i: T) => boolean): boolean;
     update(obj: T, extra?: unknown, replace?: boolean): T;
-  }
+}
 
 export class DMChannel extends Channel {
     constructor(client: Client, data: object);
