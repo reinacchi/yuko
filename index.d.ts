@@ -480,7 +480,7 @@ export class Shard {
     socketURL: string;
     heartbeat(): Promise<void>;
     processWebsocketData(rawData: RawPacket): Promise<void>;
-    send(...args: object[]): Promise<any>;
+    send(data: object[]): Promise<any>;
     setupWebsocket(): Promise<void>;
     start(): Promise<void>;
 
