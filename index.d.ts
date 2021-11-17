@@ -313,8 +313,8 @@ export class Client extends EventEmitter {
     addGuildMemberRole(guildID: string, memberID: string, roleID: string): Promise<void>;
     bulkDeleteMessages(channelID: string, messageIDs: string[]): Promise<void>;
     connect(): Promise<void>;
-    createDM(userID: string): Promise<DMChannel>;
     createMessage(channelID: string, options: MessageOptions): Promise<Message>;
+    createUserDM(userID: string): Promise<DMChannel>;
     deleteMessage(channelID: string, messageID: string): Promise<void>;
     editGuildMember(guildID: string, memberID: string, options: EditMemberOptions): Promise<Member>;
     editMessage(channelID: string, messageID: string, options: MessageOptions): Promise<Message>;
@@ -413,6 +413,8 @@ export class Member extends User {
     nick: string;
     roles: string[];
     user: User;
+    addRole(roleID: string): Promise<void>;
+    removeRole(roleID: stirng): Promise<void>;
     toUser(): User;
 }
 
