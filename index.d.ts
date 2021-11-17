@@ -173,6 +173,14 @@ interface Constants {
     };
 }
 
+interface EditMemberOptions {
+    channelID?: string;
+    deaf?: boolean;
+    mute?: boolean;
+    nick?: string;
+    roles?: string[];
+}
+
 interface EmbedAuthorOptions {
     icon_url?: string;
     name: string;
@@ -302,13 +310,16 @@ export class Client extends EventEmitter {
     uptime: number;
     user: ClientUser;
     users: Collection<User>
+    addGuildMemberRole(guildID: string, memberID: string, roleID: string): Promise<void>;
     bulkDeleteMessages(channelID: string, messageIDs: string[]): Promise<void>;
     connect(): Promise<void>;
     createDM(userID: string): Promise<DMChannel>;
     createMessage(channelID: string, options: MessageOptions): Promise<Message>;
     deleteMessage(channelID: string, messageID: string): Promise<void>;
+    editGuildMember(guildID: string, memberID: string, options: EditMemberOptions): Promise<Member>;
     editMessage(channelID: string, messageID: string, options: MessageOptions): Promise<Message>;
     getMessages(channelID: string): Promise<Message[]>;
+    removeGuildMemberRole(guildID: string, memberID: string, roleID: string): Promise<void>;
     on<K extends keyof ClientEvents>(event: K, listener: (...args: ClientEvents[K]) => void): this;
     on<S extends string | symbol>(
         event: Exclude<S, keyof ClientEvents>,
