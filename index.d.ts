@@ -10,7 +10,7 @@ type ActivityType = 0 | 1 | 2 | 3 | 5;
 type AnyChannel = TextChannel | DMChannel | GuildChannel | Channel;
 type AnyGuildChannel = TextChannel | GuildChannel;
 type ChannelTypes = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 10 | 11 | 12 | 13;
-type ContentType = string | "application/json"
+type ContentType = string | "application/json";
 type HTTPMethod = "DELETE" | "GET" | "PATCH" | "POST" | "PUT";
 type GatewayIntentOptions = "Guilds" | "GuildMembers" | "GuildBans" | "GuildEmojis" | "GuildIntegrations" | "GuildWebhooks" | "GuildInvites" | "GuildVoiceStates" | "GuildPresences" | "GuildMessages" | "GuildMessageReactions" | "GuildMessageTyping" | "DirectMessages" | "DirectMessageReactions" | "DirectMessageTyping" | "AllPrivileged" | "AllNonPrivileged" | "AllGuild" | "AllDM" | "All";
 type PresenceStatusOptions = "online" | "dnd" | "idle" | "offline" | "invisible";
@@ -279,11 +279,11 @@ export class Base {
 }
 
 export class Channel extends Base {
-    constructor(client: Client, data: object);
+    constructor(client: Client, data: any);
 
     id: string;
     type: ChannelTypes;
-    from(client: Client, data: object): AnyChannel;
+    from(client: Client, data: any): AnyChannel;
 }
 
 export class Client extends EventEmitter {
@@ -331,7 +331,7 @@ export class Client extends EventEmitter {
 }
 
 export class ClientUser extends User {
-    constructor(client: Client, data: object);
+    constructor(client: Client, data: any);
 
     locale: string;
     mfaEnabled: boolean;
@@ -356,7 +356,7 @@ export class Collection<T extends { id: string | number }> extends Map<string | 
 }
 
 export class DMChannel extends Channel {
-    constructor(client: Client, data: object);
+    constructor(client: Client, data: any);
 
     lastMessageID: string;
     createMessage(options: MessageOptions): Promise<Message>;
@@ -366,7 +366,7 @@ export class DMChannel extends Channel {
 }
 
 export class Guild extends Base {
-    constructor(client: Client, data: object);
+    constructor(client: Client, data: any);
 
     bannerURL?: string;
     channels: Collection<Channel>;
@@ -383,7 +383,7 @@ export class Guild extends Base {
 }
 
 export class GuildChannel extends Channel {
-    constructor(client: Client, data: object);
+    constructor(client: Client, data: any);
 
     client: Client;
     guild: Guild;
@@ -393,7 +393,7 @@ export class GuildChannel extends Channel {
 }
 
 export class Member extends User {
-    constructor(client: Client, guild: Guild, data: object);
+    constructor(client: Client, guild: Guild, data: any);
 
     deafened: boolean;
     guild: Guild;
@@ -406,7 +406,7 @@ export class Member extends User {
 }
 
 export class Message extends Base {
-    constructor(client: Client, data: object);
+    constructor(client: Client, data: any);
 
     attachments: object[];
     author: User;
@@ -447,7 +447,7 @@ export class RESTManager {
 }
 
 export class Role extends Base {
-    constructor(client: Client, guild: Guild, data: object);
+    constructor(client: Client, guild: Guild, data: any);
 
     client: Client;
     color: string;
@@ -487,7 +487,7 @@ export class Shard {
 }
 
 export class TextChannel extends GuildChannel {
-    constructor(client: Client, data: object);
+    constructor(client: Client, data: any);
 
     lastMessageID: string;
     name: string;
@@ -500,7 +500,7 @@ export class TextChannel extends GuildChannel {
 }
 
 export class User extends Base {
-    constructor(client: Client, data: object);
+    constructor(client: Client, data: any);
 
     bot: boolean;
     client: Client;
