@@ -1,7 +1,7 @@
 const Yuko = require("yuko");
 const client = new Yuko.Client("TOKEN", { intents: ["Guilds", "GuildMessages"] });
 
-client.on("ready", () => {
+client.on("gatewayReady", () => {
     console.log(`${client.user.username} is Ready!`);
 });
 
@@ -11,9 +11,9 @@ client.on("messageCreate", (message) => {
     }
 
     if (message.content === "!ping") {
-        client.createMessage(message.channelID, { content: "Pong!" });
+        message.channel.createMessage({ content: "Pong!" });
     } else if (message.content === "!embed") {
-        client.createMessage(message.channelID, {
+        message.channel.createMessage({
             embeds: [
                 {
                     title: "This is the title of the embed",
@@ -23,7 +23,7 @@ client.on("messageCreate", (message) => {
             ]
         });
     } else if (message.content === "!reply") {
-        client.createMessage(message.channelID, { content: "Replied to your message!", messageReference: { messageID: message.id } });
+        message.channel.createMessage({ content: "Replied to your message!", messageReference: { messageID: message.id } });
     }
 });
 
