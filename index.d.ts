@@ -453,6 +453,7 @@ export class Role extends Base {
     color: string;
     guild: Guild;
     hoist: boolean;
+    iconURL?: string;
     id: string;
     managed: boolean;
     mentionable: boolean;
