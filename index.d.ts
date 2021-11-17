@@ -511,4 +511,5 @@ export class User extends Base {
     createDM(): Promise<DMChannel>;
 }
 
+export const Constants: Constants;
 export const VERSION: string;
