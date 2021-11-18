@@ -414,6 +414,7 @@ export class Member extends User {
     roles: string[];
     user: User;
     addRole(roleID: string): Promise<void>;
+    edit(options: EditMemberOptions): Promise<Member>;
     removeRole(roleID: stirng): Promise<void>;
     toUser(): User;
 }
