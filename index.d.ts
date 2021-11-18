@@ -322,6 +322,7 @@ export class Client extends EventEmitter {
     user: ClientUser;
     users: Collection<User>
     addGuildMemberRole(guildID: string, memberID: string, roleID: string): Promise<void>;
+    addMessageReaction(channelID: string, messageID: string, reaction: string): Promise<void>;
     banGuildMember(guildID: string, memberID: string, deleteMessageDays?: number): Promise<void>;
     bulkDeleteMessages(channelID: string, messageIDs: string[]): Promise<void>;
     connect(): Promise<void>;
@@ -333,6 +334,7 @@ export class Client extends EventEmitter {
     getMessages(channelID: string): Promise<Message[]>;
     removeGuildMember(guildID: string, memberID: string): Promise<void>;
     removeGuildMemberRole(guildID: string, memberID: string, roleID: string): Promise<void>;
+    removeMessageReaction(channelID: string, messageID: string, reaction: string, userID?: string): Promise<void>;
     on<K extends keyof ClientEvents>(event: K, listener: (...args: ClientEvents[K]) => void): this;
     on<S extends string | symbol>(
         event: Exclude<S, keyof ClientEvents>,
@@ -449,14 +451,17 @@ export class Message extends Base {
     guild: Guild;
     guildID: string;
     id: string;
-    member: Member;
+    member?: Member;
     messageReference: MessageReferenceOptions;
     pinned: boolean;
+    reactions: { count: number; emoji: EmojiOptions; me: boolean }[];
     timestamp: number;
     tts: boolean;
     type: number;
     delete(): Promise<void>;
     edit(options: MessageOptions): Promise<Message>;
+    react(reaction: string): Promise<void>;
+    unreact(reaction: string, userID?: string): Promise<void>;
 }
 
 export class RESTManager {
