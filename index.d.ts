@@ -322,6 +322,7 @@ export class Client extends EventEmitter {
     user: ClientUser;
     users: Collection<User>
     addGuildMemberRole(guildID: string, memberID: string, roleID: string): Promise<void>;
+    banGuildMember(guildID: string, memberID: string, deleteMessageDays?: number): Promise<void>;
     bulkDeleteMessages(channelID: string, messageIDs: string[]): Promise<void>;
     connect(): Promise<void>;
     createMessage(channelID: string, options: MessageOptions): Promise<Message>;
@@ -330,6 +331,7 @@ export class Client extends EventEmitter {
     editGuildMember(guildID: string, memberID: string, options: EditMemberOptions): Promise<Member>;
     editMessage(channelID: string, messageID: string, options: MessageOptions): Promise<Message>;
     getMessages(channelID: string): Promise<Message[]>;
+    removeGuildMember(guildID: string, memberID: string): Promise<void>;
     removeGuildMemberRole(guildID: string, memberID: string, roleID: string): Promise<void>;
     on<K extends keyof ClientEvents>(event: K, listener: (...args: ClientEvents[K]) => void): this;
     on<S extends string | symbol>(
@@ -425,7 +427,9 @@ export class Member extends User {
     roles: string[];
     user: User;
     addRole(roleID: string): Promise<void>;
+    ban(deleteMessageDays?: number): Promise<void>;
     edit(options: EditMemberOptions): Promise<Member>;
+    remove(): Promise<void>;
     removeRole(roleID: stirng): Promise<void>;
     toUser(): User;
 }
@@ -506,6 +510,9 @@ export class Shard {
     socketURL: string;
     heartbeat(): Promise<void>;
     processWebsocketData(rawData: RawPacket): Promise<void>;
+    reset(): void;
+    restart(): void;
+    resume(): Promise<void>;
     send(data: object[]): Promise<any>;
     setupWebsocket(): Promise<void>;
     start(): Promise<void>;
