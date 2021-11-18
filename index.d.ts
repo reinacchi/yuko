@@ -176,6 +176,12 @@ interface Constants {
         GUILD_INVITE_REMINDER: 22;
         CONTEXT_MENU_COMMAND: 23;
     };
+    WebsocketState: {
+        CONNECTING: 0,
+        OPEN: 1,
+        CLOSING: 2,
+        CLOSE: 3
+    }
 }
 
 interface EditMemberOptions {
