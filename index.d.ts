@@ -57,6 +57,10 @@ interface ClientOptions {
 }
 
 interface Constants {
+    // Versions
+    API_VERSION: 9;
+    GATEWAY_VERSION: 9;
+
     ChannelTypes: {
         GUILD_TEXT: 0;
         DM: 1;
