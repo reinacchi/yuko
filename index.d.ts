@@ -50,6 +50,7 @@ interface ClientEvents {
 
 interface ClientOptions {
     allowedMentions?: AllowedMentions;
+    autoReconnect?: boolean;
     intents: GatewayIntentOptions[];
     messageCacheLimit?: number;
     shardCount?: number | "auto";
