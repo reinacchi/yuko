@@ -176,6 +176,52 @@ interface Constants {
         GUILD_INVITE_REMINDER: 22;
         CONTEXT_MENU_COMMAND: 23;
     };
+    Permissions: {
+        CreateInstantsInvite: 1n;
+        KickMembers: 2n;
+        BanMembers: 4n;
+        Administrator: 8n;
+        ManageChannels: 16n;
+        ManageGuild: 32n;
+        AddReactions: 64n;
+        ViewAuditLog: 128n;
+        VoicePrioritySpeaker: 256n;
+        VoiceStream: 512n;
+        ViewChannel: 1024n;
+        SendMessages: 2048n;
+        SendTTSMessages: 4096n;
+        ManageMessages: 8192n;
+        EmbedLinks: 16384n;
+         AttachFiles: 32768n;
+        ReadMessageHistory: 65536n;
+        MentionEveryone: 131072n;
+        UseExternalEmojis: 262144n;
+        ViewGuildInsights: 524288n;
+        VoiceConnect: 1048576n;
+        VoiceSpeak: 2097152n;
+        VoiceMuteMembers: 41943404n;
+        VoiceDeafenMembers: 8388608n;
+        VoiceMoveMembers: 16777216n;
+        VoiceUseVAD: 33554432n;
+        ChangeNickname: 67108864n;
+        ManageNicknames: 134217728n;
+        ManageRoles: 2688435456n;
+        ManageWebhooks: 536870912n;
+        ManageEmojisAndStickers: 1073741824n;
+        UseApplicationCommands: 2147483648n;
+        VoiceRequestToSpeak: 4294967296n;
+        ManageEvents: 8589934592n;
+        ManageThreads: 17179869184n;
+        CreatePublicThreads: 34359738368n;
+        CreatePrivateThreads: 68719476736n;
+        UseExternalStickers: 137438953472n;
+        SendMessagesInThreads: 274877906944n;
+        StartEmbeddedActivities: 549755813888n;
+        AllGuild: 2080899262n;
+        AllText: 518349388881n;
+        AllVoice: 554385278737n;
+        All: 1073741823999n;
+    };
     WebsocketState: {
         CONNECTING: 0,
         OPEN: 1,
@@ -403,6 +449,7 @@ export class Guild extends Base {
     members: Collection<Member>;
     name: string;
     nsfwLevel: number;
+    ownerID: string;
     id: string;
     region: string;
     roles: Collection<Role>;
@@ -426,6 +473,7 @@ export class Member extends User {
     joinedAt: number;
     muted: boolean;
     nick: string;
+    permissions: Permission;
     roles: string[];
     user: User;
     addRole(roleID: string): Promise<void>;
@@ -464,6 +512,14 @@ export class Message extends Base {
     unreact(reaction: string, userID?: string): Promise<void>;
 }
 
+export class Permission {
+    constructor(allow: number, deny?: number);
+
+    allow: bigint;
+    deny: bigint
+    has(permission: keyof Constants["Permissions"]): boolean;
+}
+
 export class RESTManager {
     constructor(client: Client);
 
@@ -492,6 +548,7 @@ export class Role extends Base {
     managed: boolean;
     mentionable: boolean;
     name: string;
+    permissions: Permission;
     position: number;
 }
 
