@@ -477,7 +477,7 @@ export class RESTManager {
     retries: Map<string, Route>;
     userAgent: string;
     request(method: HTTPMethod, endpoint: string, payload?: unknown, contentType?: ContentType): Promise<any>;
-    route(method: HTTPMethod, route: string);
+    route(method: HTTPMethod, route: string): Promise<any>;
 }
 
 export class Role extends Base {
