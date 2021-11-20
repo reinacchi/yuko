@@ -11,6 +11,7 @@ module.exports = {
     GuildChannel: require("./lib/structures/GuildChannel"),
     Member: require("./lib/structures/Member"),
     Message: require("./lib/structures/Message"),
+    Permission: require("./lib/structures/Permission"),
     RESTManager: require("./lib/managers/RESTManager"),
     Role: require("./lib/structures/Role"),
     Shard: require("./lib/core/Shard"),
