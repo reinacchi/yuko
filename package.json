@@ -7,6 +7,8 @@
     "node": ">=14.0.0"
   },
   "scripts": {
+    "docs": "docgen --source lib --custom docs/index.yml --output docs/docs.json",
+    "docs:test": "docgen --source lib --custom docs/index.yml",
     "lint:js": "eslint -c .eslintrc.yml lib examples *.js",
     "lint:js:fix": "eslint -c .eslintrc.yml lib examples *.js --fix && echo \"\u001b[1m\u001b[32mOK\u001b[39m\u001b[22m\" || echo \"\u001b[1m\u001b[31mNot OK\u001b[39m\u001b[22m\""
   },
@@ -29,6 +31,7 @@
   },
   "homepage": "https://github.com/NotMarx/yuko#readme",
   "devDependencies": {
+    "@discordjs/docgen": "github:discordjs/discord.js-docgen",
     "@types/node": "^16.4.13",
     "@types/ws": "^7.4.7",
     "@typescript-eslint/eslint-plugin": "^4.29.1",
