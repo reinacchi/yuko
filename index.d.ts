@@ -217,8 +217,8 @@ interface Constants {
         SendMessagesInThreads: 274877906944n;
         StartEmbeddedActivities: 549755813888n;
         AllGuild: 2080899262n;
-        AllText: 518349388881n;
-        AllVoice: 554385278737n;
+        AllGuildText: 518349388881n;
+        AllGuildVoice: 554385278737n;
         All: 1073741823999n;
     };
     WebsocketState: {
