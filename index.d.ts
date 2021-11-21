@@ -351,7 +351,7 @@ export class Channel extends Base {
 }
 
 export class Client extends EventEmitter {
-    constructor(token: string, options: ClientOptions);
+    constructor(token: string, options?: ClientOptions);
 
     channels: Collection<Channel>;
     connected: boolean;
