@@ -37,7 +37,7 @@ client.connect();
 
 # Resources Links
 
-- **Yuko's Official Docs** is currently **W.I.P**.
+- **[Yuko's Official Docs](https://yuko.js.org)** is where you can explore more about the library.
 - **[Yuko's GitHub Repository](https://github.com/NotMarx/yuko)** is where the main development of the library happens.
    - **Yuko** official third-party library, **[Yukora](https://github.com/NotMarx/yukora)**
 - **[Yuko's Support Server](https://discord.gg/5wP5cCqSHD)** is where you can ask help within the library or to contact me.
