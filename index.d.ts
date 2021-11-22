@@ -229,6 +229,27 @@ interface Constants {
     }
 }
 
+interface EditGuildOptions {
+    afkChannelID?: string;
+    afkTimeout?: number;
+    banner?: string;
+    defaultMessageNotifications?: 0 | 1;
+    description?: string;
+    discoverySplash?: string;
+    explicitContentFilter?: 0 | 1 | 2;
+    features?: string[];
+    icon?: string;
+    name?: string;
+    ownerID?: string;
+    preferredLocale?: string;
+    publicUpdatesChannel?: string;
+    rulesChannelID?: string;
+    splash?: string;
+    systemChannelFlags?: number;
+    systemChannelID?: string;
+    verificationLevel?: number;
+}
+
 interface EditMemberOptions {
     channelID?: string;
     deaf?: boolean;
@@ -374,6 +395,7 @@ export class Client extends EventEmitter {
     createMessage(channelID: string, options: MessageOptions): Promise<Message>;
     createUserDM(userID: string): Promise<DMChannel>;
     deleteMessage(channelID: string, messageID: string): Promise<void>;
+    editGuild(guildID: string, options: EditMemberOptions): Promise<Guild>;
     editGuildMember(guildID: string, memberID: string, options: EditMemberOptions): Promise<Member>;
     editMessage(channelID: string, messageID: string, options: MessageOptions): Promise<Message>;
     getMessages(channelID: string): Promise<Message[]>;
@@ -452,6 +474,7 @@ export class Guild extends Base {
     id: string;
     region: string;
     roles: Collection<Role>;
+    edit(options: EditGuildOptions): Promise<Guild>;
 }
 
 export class GuildChannel extends Channel {
