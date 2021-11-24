@@ -308,6 +308,7 @@ interface MessageOptions {
     allowedMentions?: AllowedMentions;
     components?: ActionRow[];
     content?: string;
+    embed?: EmbedOptions;
     embeds?: EmbedOptions[];
     flags?: number;
     messageReference?: MessageReferenceOptions;
