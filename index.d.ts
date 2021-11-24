@@ -26,6 +26,11 @@ interface AllowedMentions {
     users?: boolean | string[];
 }
 
+interface BanGuildMemberOptions {
+    deleteMessageDays?: number;
+    reason?: string;
+}
+
 interface Button {
     custom_id: string;
     disabled?: boolean;
@@ -244,6 +249,7 @@ interface EditGuildOptions {
     ownerID?: string;
     preferredLocale?: string;
     publicUpdatesChannel?: string;
+    reason?: string;
     rulesChannelID?: string;
     splash?: string;
     systemChannelFlags?: number;
@@ -256,6 +262,7 @@ interface EditMemberOptions {
     deaf?: boolean;
     mute?: boolean;
     nick?: string;
+    reason?: string;
     roles?: string[];
 }
 
@@ -345,6 +352,7 @@ interface RoleOptions {
     name?: string;
     unicodeEmoji?: string;
     permissions?: bigint | number | string;
+    reason?: string;
 }
 
 interface SelectMenu {
@@ -399,23 +407,23 @@ export class Client extends EventEmitter {
     uptime: number;
     user: ClientUser;
     users: Collection<User>
-    addGuildMemberRole(guildID: string, memberID: string, roleID: string): Promise<void>;
+    addGuildMemberRole(guildID: string, memberID: string, roleID: string, reason?: string): Promise<void>;
     addMessageReaction(channelID: string, messageID: string, reaction: string): Promise<void>;
-    banGuildMember(guildID: string, memberID: string, deleteMessageDays?: number): Promise<void>;
-    bulkDeleteMessages(channelID: string, messageIDs: string[]): Promise<void>;
+    banGuildMember(guildID: string, memberID: string, options?: BanGuildMemberOptions): Promise<void>;
+    bulkDeleteMessages(channelID: string, messageIDs: string[], reason?: string): Promise<void>;
     connect(): Promise<void>;
     createGuildRole(guildID: string, options: RoleOptions): Promise<Role>;
     createMessage(channelID: string, options: MessageOptions): Promise<Message>;
     createUserDM(userID: string): Promise<DMChannel>;
-    deleteGuildRole(guildID: string, roleID: string): Promise<void>;
-    deleteMessage(channelID: string, messageID: string): Promise<void>;
-    editGuild(guildID: string, options: EditMemberOptions): Promise<Guild>;
+    deleteGuildRole(guildID: string, roleID: string, reason?: string): Promise<void>;
+    deleteMessage(channelID: string, messageID: string, reason?: string): Promise<void>;
+    editGuild(guildID: string, options: EditGuildOptions): Promise<Guild>;
     editGuildMember(guildID: string, memberID: string, options: EditMemberOptions): Promise<Member>;
     editGuildRole(guildID: string, roleID: string, options: RoleOptions): Promise<Role>;
     editMessage(channelID: string, messageID: string, options: MessageOptions): Promise<Message>;
     getMessages(channelID: string): Promise<Message[]>;
-    removeGuildMember(guildID: string, memberID: string): Promise<void>;
-    removeGuildMemberRole(guildID: string, memberID: string, roleID: string): Promise<void>;
+    removeGuildMember(guildID: string, memberID: string, reason?: string): Promise<void>;
+    removeGuildMemberRole(guildID: string, memberID: string, roleID: string, reason?: string): Promise<void>;
     removeMessageReaction(channelID: string, messageID: string, reaction: string, userID?: string): Promise<void>;
     on<K extends keyof ClientEvents>(event: K, listener: (...args: ClientEvents[K]) => void): this;
     on<S extends string | symbol>(
@@ -493,7 +501,7 @@ export class Guild extends Base {
     region: string;
     roles: Collection<Role>;
     createRole(options: RoleOptions): Promise<Role>;
-    deleteRole(roleID: string): Promise<void>;
+    deleteRole(roleID: string, reason?: string): Promise<void>;
     edit(options: EditGuildOptions): Promise<Guild>;
     editRole(roleID: string, options: RoleOptions): Promise<Role>;
 }
@@ -519,11 +527,11 @@ export class Member extends User {
     permissions: Permission;
     roles: string[];
     user: User;
-    addRole(roleID: string): Promise<void>;
-    ban(deleteMessageDays?: number): Promise<void>;
+    addRole(roleID: string, reason?: string): Promise<void>;
+    ban(options?: BanGuildMemberOptions): Promise<void>;
     edit(options: EditMemberOptions): Promise<Member>;
-    remove(): Promise<void>;
-    removeRole(roleID: stirng): Promise<void>;
+    remove(reason?: string): Promise<void>;
+    removeRole(roleID: stirng, reason?: string): Promise<void>;
     toUser(): User;
 }
 
@@ -550,7 +558,7 @@ export class Message extends Base {
     tts: boolean;
     type: number;
     create(options: MessageOptions): Promise<Message>;
-    delete(): Promise<void>;
+    delete(reason?: string): Promise<void>;
     edit(options: MessageOptions): Promise<Message>;
     react(reaction: string): Promise<void>;
     reply(options: MessageOptions): Promise<Message>;
@@ -635,7 +643,7 @@ export class TextChannel extends GuildChannel {
     nsfw: boolean;
     topic: string;
     createMessage(options: MessageOptions): Promise<Message>;
-    deleteMessage(messageID: string): Promise<void>;
+    deleteMessage(messageID: string, reason?: string): Promise<void>;
     editMessage(channelID: string, options: MessageOptions): Promise<Message>;
     getMessages(): Promise<Message[]>;
 }
