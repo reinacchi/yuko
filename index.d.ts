@@ -451,11 +451,14 @@ export class Collection<T extends { id: string | number }> extends Map<string | 
 export class DMChannel extends Channel {
     constructor(client: Client, data: any);
 
+    recipient: User;
     lastMessageID: string;
+    addMessageReaction(messageID: string, reaction: string): Promise<void>;
     createMessage(options: MessageOptions): Promise<Message>;
     deleteMessage(messageID: string): Promise<void>;
     editMessage(channelID: string, options: MessageOptions): Promise<Message>;
     getMessages(): Promise<Message[]>;
+    removeMessageReaction(messageID: string, reaction: string, userID?: string): Promise<void>;
 }
 
 export class Guild extends Base {
@@ -528,6 +531,7 @@ export class Message extends Base {
     timestamp: number;
     tts: boolean;
     type: number;
+    create(options: MessageOptions): Promise<Message>;
     delete(): Promise<void>;
     edit(options: MessageOptions): Promise<Message>;
     react(reaction: string): Promise<void>;
