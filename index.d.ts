@@ -335,6 +335,16 @@ interface RawPacket {
     t?: string;
 }
 
+interface RoleOptions {
+    color?: number;
+    hoist?: boolean;
+    icon?: string;
+    mentionable?: boolean;
+    name?: string;
+    unicodeEmoji?: string;
+    permissions?: bigint | number | string;
+}
+
 interface SelectMenu {
     custom_id: string;
     disabled: boolean;
@@ -392,11 +402,14 @@ export class Client extends EventEmitter {
     banGuildMember(guildID: string, memberID: string, deleteMessageDays?: number): Promise<void>;
     bulkDeleteMessages(channelID: string, messageIDs: string[]): Promise<void>;
     connect(): Promise<void>;
+    createGuildRole(guildID: string, options: RoleOptions): Promise<Role>;
     createMessage(channelID: string, options: MessageOptions): Promise<Message>;
     createUserDM(userID: string): Promise<DMChannel>;
+    deleteGuildRole(guildID: string, roleID: string): Promise<void>;
     deleteMessage(channelID: string, messageID: string): Promise<void>;
     editGuild(guildID: string, options: EditMemberOptions): Promise<Guild>;
     editGuildMember(guildID: string, memberID: string, options: EditMemberOptions): Promise<Member>;
+    editGuildRole(guildID: string, roleID: string, options: RoleOptions): Promise<Role>;
     editMessage(channelID: string, messageID: string, options: MessageOptions): Promise<Message>;
     getMessages(channelID: string): Promise<Message[]>;
     removeGuildMember(guildID: string, memberID: string): Promise<void>;
@@ -477,7 +490,10 @@ export class Guild extends Base {
     id: string;
     region: string;
     roles: Collection<Role>;
+    createRole(options: RoleOptions): Promise<Role>;
+    deleteRole(roleID: string): Promise<void>;
     edit(options: EditGuildOptions): Promise<Guild>;
+    editRole(roleID: string, options: RoleOptions): Promise<Role>;
 }
 
 export class GuildChannel extends Channel {
