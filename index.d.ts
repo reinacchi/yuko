@@ -191,7 +191,7 @@ interface Constants {
         SendTTSMessages: 4096n;
         ManageMessages: 8192n;
         EmbedLinks: 16384n;
-         AttachFiles: 32768n;
+        AttachFiles: 32768n;
         ReadMessageHistory: 65536n;
         MentionEveryone: 131072n;
         UseExternalEmojis: 262144n;
