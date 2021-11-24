@@ -444,7 +444,7 @@ export class ClientUser extends User {
     locale: string;
     mfaEnabled: boolean;
     verified: boolean;
-    editStatus(status: PresenceStatusOptions, activity?: PresenceActivityOptions): void;
+    editPresence(status: PresenceStatusOptions, activity?: PresenceActivityOptions): void;
 }
 
 export class Collection<T extends { id: string | number }> extends Map<string | number, T> {
