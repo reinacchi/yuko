@@ -535,6 +535,7 @@ export class Message extends Base {
     delete(): Promise<void>;
     edit(options: MessageOptions): Promise<Message>;
     react(reaction: string): Promise<void>;
+    reply(options: MessageOptions): Promise<Message>;
     unreact(reaction: string, userID?: string): Promise<void>;
 }
 
