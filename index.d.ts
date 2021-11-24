@@ -615,6 +615,7 @@ export class Shard {
     sequence: object;
     sessionID: string;
     socketURL: string;
+    editPresence(status: PresenceStatusOptions, activity?: PresenceActivityOptions): void;
     heartbeat(): Promise<void>;
     processWebsocketData(rawData: RawPacket): Promise<void>;
     reset(): void;
