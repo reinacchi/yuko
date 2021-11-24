@@ -45,6 +45,7 @@ interface ClientEvents {
     messageCreate: [message: Message];
     rawWebsocket: [packet: RawPacket];
     shardPreReady: [shardID: number];
+    warning: [warning: string, shardID?: number];
 }
 
 interface ClientOptions {
