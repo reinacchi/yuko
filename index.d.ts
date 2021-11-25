@@ -398,6 +398,7 @@ export class Client extends EventEmitter {
     connected: boolean;
     gateway: Shard;
     guilds: Collection<Guild>;
+    guildShard: object;
     messages: Collection<Message>;
     options: ClientOptions;
     rest: RESTManager;
@@ -622,7 +623,9 @@ export class Shard {
     latency: number;
     sequence: object;
     sessionID: string;
+    shardCount: number;
     socketURL: string;
+    createGuild(_guild: any): void;
     editPresence(status: PresenceStatusOptions, activity?: PresenceActivityOptions): void;
     heartbeat(): Promise<void>;
     processWebsocketData(rawData: RawPacket): Promise<void>;
@@ -632,7 +635,6 @@ export class Shard {
     send(data: object[]): Promise<any>;
     setupWebsocket(): Promise<void>;
     start(): Promise<void>;
-
 }
 
 export class TextChannel extends GuildChannel {
