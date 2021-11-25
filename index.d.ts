@@ -501,6 +501,7 @@ export class Guild extends Base {
     id: string;
     region: string;
     roles: Collection<Role>;
+    shard: Shard;
     createRole(options: RoleOptions): Promise<Role>;
     deleteRole(roleID: string, reason?: string): Promise<void>;
     edit(options: EditGuildOptions): Promise<Guild>;
