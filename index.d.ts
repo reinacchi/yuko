@@ -605,6 +605,8 @@ export class Role extends Base {
     name: string;
     permissions: Permission;
     position: number;
+    delete(reason?: string): Promise<void>;
+    edit(options: RoleOptions): Promise<Role>;
 }
 
 export class Route {
