@@ -518,6 +518,13 @@ export class GuildChannel extends Channel {
     position: number;
 }
 
+export class Invite extends Base {
+    constructor(client: Client, data: any);
+
+    code: string;
+    inviter: User;
+}
+
 export class Member extends User {
     constructor(client: Client, guild: Guild, data: any);
 
