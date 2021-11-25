@@ -9,6 +9,7 @@ module.exports = {
     DMChannel: require("./lib/structures/DMChannel"),
     Guild: require("./lib/structures/Guild"),
     GuildChannel: require("./lib/structures/GuildChannel"),
+    Invite: require("./lib/structures/Invite"),
     Member: require("./lib/structures/Member"),
     Message: require("./lib/structures/Message"),
     Permission: require("./lib/structures/Permission"),
