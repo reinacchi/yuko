@@ -417,6 +417,7 @@ export class Client extends EventEmitter {
     createMessage(channelID: string, options: MessageOptions): Promise<Message>;
     createUserDM(userID: string): Promise<DMChannel>;
     deleteGuildRole(guildID: string, roleID: string, reason?: string): Promise<void>;
+    deleteInvite(inviteID: string, reason?: string): Promise<void>;
     deleteMessage(channelID: string, messageID: string, reason?: string): Promise<void>;
     editGuild(guildID: string, options: EditGuildOptions): Promise<Guild>;
     editGuildMember(guildID: string, memberID: string, options: EditMemberOptions): Promise<Member>;
