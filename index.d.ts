@@ -522,8 +522,19 @@ export class GuildChannel extends Channel {
 export class Invite extends Base {
     constructor(client: Client, data: any);
 
+    approximateMemberCount?: number;
+    approximatePresenceCount?: number;
+    channel: TextChannel;
     code: string;
-    inviter: User;
+    guild?: Guild;
+    inviter?: User;
+    maxAge?: number;
+    maxUses?: number;
+    targetApplicationID?: string;
+    targetType?: number;
+    targetUser?: User;
+    uses?: number;
+    delete(reason?: string): Promise<void>;
 }
 
 export class Member extends User {
