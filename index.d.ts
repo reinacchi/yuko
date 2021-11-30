@@ -398,7 +398,6 @@ export class Client extends EventEmitter {
     connected: boolean;
     gateway: Shard;
     guilds: Collection<Guild>;
-    guildShard: object;
     messages: Collection<Message>;
     options: ClientOptions;
     rest: RESTManager;
