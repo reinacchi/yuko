@@ -43,7 +43,7 @@ interface Button {
 
 interface ClientEvents {
     error: [error: string, shardID?: number];
-    gatewayReady: [];
+    gatewayReady: [client?: ClientUser];
     gatewayResumed: [];
     guildAvailable: [guild: Guild];
     guildCreate: [guild: Guild];
