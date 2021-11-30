@@ -2,4 +2,7 @@
   files: 
     - name: Welcome
       id: welcome
-      path: ../../README.md
+      path: Welcome.md
+    - name: FAQ
+      id: faq
+      path: FAQ.md
