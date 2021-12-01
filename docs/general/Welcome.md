@@ -14,7 +14,7 @@ Before using the library, you'll need to create a Discord bot and get the token 
 # Installation Requirements
 
 - [NodeJS 14+](https://nodejs.org/en/download/) 
-- Code editor
+- Code editor ([Visual Studio Code](https://code.visualstudio.com/download), [Sublime](https://www.sublimetext.com/3))
 
 # Installing Yuko
 
@@ -32,7 +32,7 @@ npm install NotMarx/yuko#master
 
 # Example Discord Bot
 
-Once you created a folder for your bot, use `npm init -y` to initalize a NodeJS project and create a `index.js` file and copy the following code below to your file.
+After a folder was created for your bot, use `npm init -y` to initalize a NodeJS project and create a `index.js` file and copy the following code below to your file.
 
 - **Hint:** More examples can be found [Here](https://github.com/NotMarx/yuko/tree/master/examples).
 
@@ -55,4 +55,4 @@ client.on("messageCreate", (message) => {
 client.connect();
 ```
 
-After copying and replaced `TOKEN` with your bot real token, run `node index.js` in the same folder.
+After copying and replaced `TOKEN` with your bot real token, run `node index.js` in the same directory.
