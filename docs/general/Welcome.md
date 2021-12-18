@@ -5,26 +5,26 @@
 
 # What is Yuko?
 
-**Yuko** is a Discord library written in JavaScript to interact with the [Discord API](https://discord.com/developers/docs/intro) easily.
+**Yuko** is a Discord library written in JavaScript to interact with the [Discord API](https://discord.com/developers/docs/intro).
 
 # Creating a Discord bot
 
-Before using the library, you'll need to create a Discord bot and get the token to run the bot. You can create a Discord bot by login via [Discord Developer Portal](https://discord.com/developers/applications) and click on the **New Application**. Once an application was created, go to **Bot** section and create a new bot. Then, copy the token and use it to connect the bot.
+Before using the library, you will need to create a Discord bot and get its token to run the bot. You can create a Discord bot by login via [Discord Developer Portal](https://discord.com/developers/applications) and click on the **New Application**. Once an application was created, go to the **Bot** section and create a new bot. Then, copy the token and use it to connect the bot to the Discord gateway.
 
 # Installation Requirements
 
-- [NodeJS 14+](https://nodejs.org/en/download/) 
-- Code editor ([Visual Studio Code](https://code.visualstudio.com/download), [Sublime](https://www.sublimetext.com/3))
+- **[NodeJS 14+](https://nodejs.org/en/download/)** 
+- **IDE** ([Visual Studio Code](https://code.visualstudio.com/download), [Sublime](https://www.sublimetext.com/3))
 
 # Installing Yuko
 
-To install the library, create a folder for your Discord bot project somewhere and use NPM to install Yuko.
+To install the library, create a folder for your Discord bot project somewhere accessible and use **NPM** to install Yuko.
 
 ```
 npm install yuko
 ```
 
-**OR**
+Or if you want the most latest version:
 
 ```
 npm install NotMarx/yuko#master

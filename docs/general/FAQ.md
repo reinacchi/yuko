@@ -5,7 +5,7 @@
 
 # What Features Does Yuko Supports?
 
-This library is partially WIP and only few features have been implemented.
+This library is under heavy development and is unstable. Please expect to encounter any unknown bugs which we have not aware yet.
 
 - Discord API 🚧
 - REST & Gateway (excluding proper sharding) ✔
