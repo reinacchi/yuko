@@ -10,7 +10,7 @@
 
 This library is currently under heavy development and we aware the usage of this library that you may experience unknown bugs at most common rates. 
 
-- **Please do not report any issues yet until version 0.2 or until the library completely is fully stable.**
+- **Please do not report any issues until version 0.2 or until the library is completely stable.**
 
 ## Installation
 
