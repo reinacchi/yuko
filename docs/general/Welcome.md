@@ -5,6 +5,10 @@
 
 # What is Yuko?
 
+[![Yuko Status](https://img.shields.io/badge/status-unstable-blue)](https://github.com/reinhello/yuko)
+[![Yuko Release](https://img.shields.io/github/v/release/reinhello/yuko?color=%2342B893&logoColor=black)](https://github.com/reinhello/yuko/releases/latest)
+[![Discord Server](https://discord.com/api/guilds/874558291349491712/widget.png?style=shield)](https://discord.gg/5wP5cCqSHD)
+
 **Yuko** is a Discord library written in JavaScript to interact with the [Discord API](https://discord.com/developers/docs/intro).
 
 # Creating a Discord bot
@@ -34,7 +38,7 @@ npm install NotMarx/yuko#master
 
 After a folder was created for your bot, use `npm init -y` to initalize a NodeJS project and create a `index.js` file and copy the following code below to your file.
 
-- **Hint:** More examples can be found [Here](https://github.com/NotMarx/yuko/tree/master/examples).
+- **Hint:** More examples can be found [Here](https://github.com/reinhello/yuko/tree/master/examples).
 
 ```js
 const Yuko = require("yuko");
