@@ -222,10 +222,11 @@ interface Constants {
         UseExternalStickers: 137438953472n;
         SendMessagesInThreads: 274877906944n;
         StartEmbeddedActivities: 549755813888n;
-        AllGuild: 2080899262n;
+        ModerateMembers: 1099511627776n;
+        AllGuild: 1101592527038n;
         AllGuildText: 518349388881n;
         AllGuildVoice: 554385278737n;
-        All: 1073741823999n;
+        All: 1228360646655n;
     };
     WebsocketState: {
         CONNECTING: 0,
@@ -259,6 +260,7 @@ interface EditGuildOptions {
 
 interface EditMemberOptions {
     channelID?: string;
+    communicationDisabledUntil?: number | null;
     deaf?: boolean;
     mute?: boolean;
     nick?: string;
@@ -539,6 +541,7 @@ export class Invite extends Base {
 export class Member extends User {
     constructor(client: Client, guild: Guild, data: any);
 
+    communicationDisabledUntil: number | null;
     deafened: boolean;
     guild: Guild;
     joinedAt: number;
